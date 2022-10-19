@@ -21,18 +21,9 @@ public class FlowController {
             GameWindow game = new GameWindow();
             scene.onKeyPressedProperty().bind(game.getGameBoard().onKeyPressedProperty());
             scene.setRoot(game);
-            stage.setFullScreen(true);
-            stage.setFullScreenExitHint("");
             stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-            // stage.fullScreenProperty().addListener(new ChangeListener<Boolean>() {
-
-            //     @Override
-            //     public void changed(ObservableValue<? extends Boolean> observable,
-            //             Boolean oldValue, Boolean newValue) {
-            //         if(newValue != null && !newValue.booleanValue())
-            //             stage.setFullScreen(true);
-            //     }
-            // });
+            stage.setFullScreenExitHint("");
+            stage.setFullScreen(true);
         }
     };
 

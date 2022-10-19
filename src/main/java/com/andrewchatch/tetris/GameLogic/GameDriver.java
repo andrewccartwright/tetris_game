@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
@@ -26,12 +28,13 @@ public class GameDriver extends AnimationTimer {
     public GameBoard board;
     private int frameCount;
     public Stage stage;
-    private boolean isPaused = false;
+    private PauseController pauseController;
 
     public GameDriver(GameBoard board) {
         super();
         this.currentShape = board.currentShape;
         this.board = board;
+        this.pauseController = new PauseController(this, this.board);
         this.board.setOnKeyPressed(keyEventHandler());
         this.board.addEventHandler(ActionEvent.ACTION, handlePopup());
     }
@@ -43,7 +46,7 @@ public class GameDriver extends AnimationTimer {
 
         if (frameCount % FRAME_DIVISOR == 0) {
             if (this.currentShape.checkGameOver()) {
-                this.stop();
+                this.endGame();
             }
 
             currentShape.moveDown();
@@ -63,10 +66,10 @@ public class GameDriver extends AnimationTimer {
         EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(final KeyEvent event) {
-                if (event.getCode().toString() == "CONTROL") {
+                if (event.getCode().toString() == "ESCAPE") {
                     pause();
                 }
-                if (isPaused) {
+                if (pauseController.getIsPaused()) {
                     return;
                 }
                 else {
@@ -128,17 +131,22 @@ public class GameDriver extends AnimationTimer {
     @Override
     public void stop() {
         super.stop();
+    }
+
+    public void endGame() {
+        super.stop();
         ActionEvent event = new ActionEvent();
         ActionEvent.fireEvent(board, event);
     }
 
-    public void pause() {
-        if (isPaused) {
-            super.start();
-        }
-        else {
-            super.stop();
-        }
-        isPaused = !isPaused;
+    @Override
+    public void start() {
+        super.start();
     }
+
+    public void pause() {
+        pauseController.togglePause();
+    }
+
+    
 }
