@@ -26,6 +26,7 @@ public class GameDriver extends AnimationTimer {
     public GameBoard board;
     private int frameCount;
     public Stage stage;
+    private boolean isPaused = false;
 
     public GameDriver(GameBoard board) {
         super();
@@ -42,7 +43,6 @@ public class GameDriver extends AnimationTimer {
 
         if (frameCount % FRAME_DIVISOR == 0) {
             if (this.currentShape.checkGameOver()) {
-                System.out.println("Game Over");
                 this.stop();
             }
 
@@ -63,20 +63,28 @@ public class GameDriver extends AnimationTimer {
         EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(final KeyEvent event) {
-                if (event.getCode().toString() == "LEFT") {
-                    board.currentShape.moveLeft();
+                if (event.getCode().toString() == "CONTROL") {
+                    pause();
                 }
-                else if (event.getCode().toString() == "RIGHT") {
-                    board.currentShape.moveRight();
+                if (isPaused) {
+                    return;
                 }
-                else if (event.getCode().toString() == "UP") {
-                    board.currentShape.rotate();
-                }
-                else if (event.getCode().toString() == "DOWN") {
-                    board.currentShape.moveDown();
-                }
-                else if (event.getCode().toString() == "SPACE") {
-                    board.currentShape.moveFast();
+                else {
+                    if (event.getCode().toString() == "LEFT") {
+                        board.currentShape.moveLeft();
+                    }
+                    else if (event.getCode().toString() == "RIGHT") {
+                        board.currentShape.moveRight();
+                    }
+                    else if (event.getCode().toString() == "UP") {
+                        board.currentShape.rotate();
+                    }
+                    else if (event.getCode().toString() == "DOWN") {
+                        board.currentShape.moveDown();
+                    }
+                    else if (event.getCode().toString() == "SPACE") {
+                        board.currentShape.moveFast();
+                    }
                 }
             }
         };
@@ -122,5 +130,15 @@ public class GameDriver extends AnimationTimer {
         super.stop();
         ActionEvent event = new ActionEvent();
         ActionEvent.fireEvent(board, event);
+    }
+
+    public void pause() {
+        if (isPaused) {
+            super.start();
+        }
+        else {
+            super.stop();
+        }
+        isPaused = !isPaused;
     }
 }

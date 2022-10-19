@@ -136,13 +136,19 @@ public abstract class Shape {
     }
 
     public boolean compareToChildren(Brick b, int row, int col) {
-        ObservableList<Node> children = b.getParent().getChildrenUnmodifiable();
-
-        for (Node child: children) {
-            if ((GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == col) && (b.getClass() == child.getClass() && !findInArray((Brick) child))) {
-                return true;
+        try {
+            ObservableList<Node> children = b.getParent().getChildrenUnmodifiable();
+            for (Node child: children) {
+                if ((GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == col) && (b.getClass() == child.getClass() && !findInArray((Brick) child))) {
+                    return true;
+                }
             }
         }
+        catch (NullPointerException e) {
+            // System.out.println(e);
+        }
+
+        
 
         return false;
     }
@@ -212,6 +218,9 @@ public abstract class Shape {
             int x = bricks[i].getXPos() + tempX;
             int y = bricks[i].getYPos() + tempY;
 
+            if (compareToChildren(bricks[i], x, y)) {
+                canRotate = false;
+            }
             if (x < 0 || x >= GameBoard.GRID_WIDTH || y < 0 || y >= GameBoard.GRID_HEIGHT) {
                 canRotate = false;
             }

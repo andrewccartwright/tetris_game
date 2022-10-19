@@ -32,11 +32,11 @@ public class GameBoard extends GridPane {
     public Shape nextShape;
 
     private final Color PURPLE = Color.rgb(199,36,177);
-    private final Color BLUE = Color.rgb(77,77,255);
+    private final Color LIGHTBLUE = Color.AQUA;
     private final Color YELLOW = Color.rgb(255,255,0);
     private final Color ORANGE = Color.rgb(255,124,1);
     private final Color RED = Color.rgb(210,39,48);
-    private final Color FUSCHIA = Color.rgb(219,62,177);
+    private final Color BLUE = Color.rgb(2,64,254);
     private final Color GREEN = Color.rgb(68,214,44);
 
     public GameBoard() {
@@ -44,8 +44,8 @@ public class GameBoard extends GridPane {
 
         this.fillGrid();
 
-        this.nextShape = generateShape();
-        
+        this.currentShape = generateShape();
+
         this.setPrefSize(GameBoard.GRID_WIDTH * BRICK_SIZE, GameBoard.GRID_HEIGHT * BRICK_SIZE);
         this.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
@@ -59,7 +59,7 @@ public class GameBoard extends GridPane {
                 node.setHeight(BRICK_SIZE);
                 node.setWidth(BRICK_SIZE);
                 node.setFill(Color.BLACK);
-                node.setStroke(Color.AQUA);
+                node.setStroke(Color.rgb(50,152,226));
                 this.add(node, i, j);
             }
         }
@@ -73,7 +73,7 @@ public class GameBoard extends GridPane {
                 shape = new LShape(PURPLE, START_X, START_Y); //PURPLE
                 break;
             case 1:
-                shape = new IShape(BLUE, START_X, START_Y); //BLUE
+                shape = new IShape(LIGHTBLUE, START_X, START_Y); //BLUE
                 break;
             case 2:
                 shape = new ReverseLShape(YELLOW, START_X, START_Y); //YELLOW
@@ -85,13 +85,13 @@ public class GameBoard extends GridPane {
                 shape = new SShape(RED, START_X, START_Y); //RED
                 break;
             case 5:
-                shape = new ZShape(FUSCHIA, START_X, START_Y); //FUSCHIA
+                shape = new ZShape(BLUE, START_X, START_Y); //FUSCHIA
                 break;
             case 6:
                 shape = new TShape(GREEN, START_X, START_Y); //GREEN
                 break;
             default:
-                shape = new IShape(BLUE, START_X, START_Y); //BLUE
+                shape = new IShape(LIGHTBLUE, START_X, START_Y); //BLUE
                 break;
         }
 

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,6 +22,17 @@ public class FlowController {
             scene.onKeyPressedProperty().bind(game.getGameBoard().onKeyPressedProperty());
             scene.setRoot(game);
             stage.setFullScreen(true);
+            stage.setFullScreenExitHint("");
+            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            // stage.fullScreenProperty().addListener(new ChangeListener<Boolean>() {
+
+            //     @Override
+            //     public void changed(ObservableValue<? extends Boolean> observable,
+            //             Boolean oldValue, Boolean newValue) {
+            //         if(newValue != null && !newValue.booleanValue())
+            //             stage.setFullScreen(true);
+            //     }
+            // });
         }
     };
 
