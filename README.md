@@ -17,3 +17,4 @@ Use the down arrow key to move the current shape down faster. Hitting spacebar w
 
 The game will progressively get faster as you play.
 
+![Tetris Game](tetris.png)
