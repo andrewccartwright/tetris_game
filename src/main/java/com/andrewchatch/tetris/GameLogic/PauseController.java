@@ -52,7 +52,8 @@ public class PauseController {
         EventHandler<ActionEvent> actionHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
-                HelpMenuController helpController = new HelpMenuController(board);
+                new HelpMenuController(board);
+                // HelpMenuController helpController = new HelpMenuController(board);
             }
         };
 
