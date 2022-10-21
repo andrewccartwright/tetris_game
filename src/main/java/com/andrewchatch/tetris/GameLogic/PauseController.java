@@ -1,7 +1,6 @@
 package com.andrewchatch.tetris.GameLogic;
 
 import com.andrewchatch.tetris.UserInterface.game.GameBoard;
-import com.andrewchatch.tetris.UserInterface.menu.HelpMenu;
 import com.andrewchatch.tetris.UserInterface.menu.PauseMenu;
 
 import javafx.event.ActionEvent;
@@ -54,7 +53,6 @@ public class PauseController {
             @Override
             public void handle(final ActionEvent event) {
                 HelpMenuController helpController = new HelpMenuController(board);
-                
             }
         };
 

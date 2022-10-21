@@ -8,8 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
@@ -66,27 +64,29 @@ public class GameDriver extends AnimationTimer {
         EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(final KeyEvent event) {
-                if (event.getCode().toString() == "ESCAPE") {
-                    pause();
-                }
-                if (pauseController.getIsPaused()) {
-                    return;
-                }
-                else {
-                    if (event.getCode().toString() == "LEFT") {
-                        board.currentShape.moveLeft();
+                if (!currentShape.getMovedFast()) {
+                    if (event.getCode().toString() == "ESCAPE") {
+                        pause();
                     }
-                    else if (event.getCode().toString() == "RIGHT") {
-                        board.currentShape.moveRight();
+                    if (pauseController.getIsPaused()) {
+                        return;
                     }
-                    else if (event.getCode().toString() == "UP") {
-                        board.currentShape.rotate();
-                    }
-                    else if (event.getCode().toString() == "DOWN") {
-                        board.currentShape.moveDown();
-                    }
-                    else if (event.getCode().toString() == "SPACE") {
-                        board.currentShape.moveFast();
+                    else {
+                        if (event.getCode().toString() == "SPACE") {
+                            board.currentShape.moveFast();
+                        }
+                        else if (event.getCode().toString() == "LEFT") {
+                            board.currentShape.moveLeft();
+                        }
+                        else if (event.getCode().toString() == "RIGHT") {
+                            board.currentShape.moveRight();
+                        }
+                        else if (event.getCode().toString() == "UP") {
+                            board.currentShape.rotate();
+                        }
+                        else if (event.getCode().toString() == "DOWN") {
+                            board.currentShape.moveDown();
+                        }
                     }
                 }
             }

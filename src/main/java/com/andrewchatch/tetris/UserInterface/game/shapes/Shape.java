@@ -16,6 +16,7 @@ public abstract class Shape {
     protected Color[] colors = {Color.BLUE, Color.YELLOW, Color.CYAN, Color.PURPLE, Color.GREEN, Color.SALMON, Color.RED};
     protected boolean isMoving = true;
     protected boolean isReversed = false;
+    protected boolean movedFast = false;
 
     public Shape(int startX, int startY) {
         this.startX = startX;
@@ -38,9 +39,28 @@ public abstract class Shape {
             int x = bricks[i].getXPos();
             int y = bricks[i].getYPos();
 
-            board.add(bricks[i], x, y);
-            GridPane.setHalignment(bricks[i], HPos.CENTER);
+            if (testAddingShape(board, x, y)) {
+                return;
+            }
+            else {
+                board.add(bricks[i], x, y);
+                GridPane.setHalignment(bricks[i], HPos.CENTER);
+            }
+
+            
         }
+    }
+
+    public boolean testAddingShape(GameBoard board, int row, int col) {
+        ObservableList<Node> children = board.getChildrenUnmodifiable();
+
+        for (Node child : children) {
+            if ((GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == col) && (child instanceof Brick && !findInArray((Brick) child))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Brick[] getBricks() {
@@ -63,7 +83,12 @@ public abstract class Shape {
         }
     }
 
+    public boolean getMovedFast() {
+        return this.movedFast;
+    }
+
     public void moveFast() {
+        this.movedFast = true;
         do {
             this.moveDown();
         }

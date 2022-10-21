@@ -10,11 +10,20 @@
 	</parent>
 	<groupId>com.andrewchatch</groupId>
 	<artifactId>tetris</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>tetris</name>
 	<description>Tetris Game</description>
+	<!-- <profiles>
+		<profile>
+			<modules>
+				<module>tetris</module>
+			</modules>
+		</profile>
+	</profiles> -->
+	
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
+		<sys.java.home>${env.JAVA_HOME}</sys.java.home>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,12 +41,20 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>19</version>
+			<classifier>mac-aarch64</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>19</version>
+			<classifier>mac-aarch64</classifier>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
-			<version>14</version>
+			<version>19</version>
 		</dependency>
 	</dependencies>
 
