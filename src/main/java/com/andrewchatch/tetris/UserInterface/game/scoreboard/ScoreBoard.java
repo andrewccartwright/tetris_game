@@ -1,10 +1,5 @@
 package com.andrewchatch.tetris.UserInterface.game.scoreboard;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import com.andrewchatch.tetris.UserInterface.TetrisWindow;
 import com.andrewchatch.tetris.UserInterface.game.GameBoard;
 
 import javafx.geometry.Pos;
@@ -25,13 +20,14 @@ public class ScoreBoard extends StackPane {
         this.board = board;
         this.scoreCounter = new Text("Score: " + this.board.getCurrentScore());
         this.scoreCounter.setFill(Color.WHITE);
-        try {
-            Font neonFont = Font.loadFont(new FileInputStream(new File(TetrisWindow.basePath + "/src/main/java/com/andrewchatch/tetris/assets/fonts/neon_pixel-7.ttf")), 48);
-            this.scoreCounter.setFont(neonFont);
-        }
-        catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
+        Font neonFont = Font.loadFont(getClass().getResourceAsStream("/fonts/neon_pixel-7.ttf"), 48);
+        this.scoreCounter.setFont(neonFont);
+        // try {
+            
+        // }
+        // catch (FileNotFoundException e) {
+        //     System.out.println(e);
+        // }
         
         box.getChildren().add(scoreCounter);
         box.setAlignment(Pos.CENTER);

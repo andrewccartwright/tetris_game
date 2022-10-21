@@ -13,13 +13,6 @@
 	<version>0.0.1</version>
 	<name>tetris</name>
 	<description>Tetris Game</description>
-	<!-- <profiles>
-		<profile>
-			<modules>
-				<module>tetris</module>
-			</modules>
-		</profile>
-	</profiles> -->
 	
 	<properties>
 		<java.version>19</java.version>
@@ -44,12 +37,12 @@
 			<classifier>mac-aarch64</classifier>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics</artifactId>
 			<version>19</version>
 			<classifier>mac-aarch64</classifier>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.openjfx</groupId>

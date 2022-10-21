@@ -1,11 +1,5 @@
 package com.andrewchatch.tetris.UserInterface.menu;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import com.andrewchatch.tetris.UserInterface.TetrisWindow;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -29,15 +23,10 @@ public class MenuButton extends Button {
         borderGlow.setWidth(DEPTH);
         this.setEffect(borderGlow);
 
-        try {
-            Font neonFont = Font.loadFont(new FileInputStream(new File(TetrisWindow.basePath + "/src/main/java/com/andrewchatch/tetris/assets/fonts/neon_pixel-7.ttf")), size);
-            this.setFont(neonFont);
-            // this.setTextFill();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
-        
+        Font neonFont = Font.loadFont(getClass().getResourceAsStream("/fonts/neon_pixel-7.ttf"), size);
+        this.setFont(neonFont);
+        this.setTextFill(Color.rgb(27,2,163));
+
         this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(3), new Insets(0))));
     }
 
@@ -52,14 +41,9 @@ public class MenuButton extends Button {
         borderGlow.setWidth(DEPTH);
         this.setEffect(borderGlow);
 
-        try {
-            Font neonFont = Font.loadFont(new FileInputStream(new File(TetrisWindow.basePath + "/src/main/java/com/andrewchatch/tetris/assets/fonts/neon_pixel-7.ttf")), size);
-            this.setFont(neonFont);
-            this.setTextFill(Color.rgb(27,2,163));
-        }
-        catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
+        Font neonFont = Font.loadFont(getClass().getResourceAsStream("/fonts/neon_pixel-7.ttf"), size);
+        this.setFont(neonFont);
+        this.setTextFill(Color.rgb(27,2,163));
         
         this.setBackground(new Background(new BackgroundFill(Color.rgb(188,1,254), new CornerRadii(3), new Insets(0))));
     }

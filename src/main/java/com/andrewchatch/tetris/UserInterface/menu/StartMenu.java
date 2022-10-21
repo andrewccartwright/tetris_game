@@ -1,21 +1,14 @@
 package com.andrewchatch.tetris.UserInterface.menu;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import com.andrewchatch.tetris.GameLogic.FlowController;
-import com.andrewchatch.tetris.UserInterface.TetrisWindow;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -43,16 +36,18 @@ public class StartMenu extends StackPane {
 
         box.setSpacing(30);
 
-        try {
-            Image image = new Image(new FileInputStream(TetrisWindow.basePath + "/src/main/java/com/andrewchatch/tetris/assets/images/start_menu_background.jpeg"), 612, 344, true, true);
-            BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
-            Background background = new Background(backgroundImage);
-            this.setBackground(background);
-        }
-        catch (FileNotFoundException e) {
-            System.out.println(e);
-            this.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
-        }
+        Image image = new Image(getClass().getResourceAsStream("/images/start_menu_background.jpeg"), 612, 344, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, null);
+        Background background = new Background(backgroundImage);
+        this.setBackground(background);
+
+        // try {
+            
+        // }
+        // catch (FileNotFoundException e) {
+        //     System.out.println(e);
+        //     this.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
+        // }
 
         this.getChildren().add(box);
     }
